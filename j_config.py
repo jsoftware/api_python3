@@ -7,7 +7,7 @@ pathpro= pathbin+'/profile.ijs'
 
 # following is typical for debian install
 # pathbin= '/usr/bin'
-# pathdll= '/usr/lib/x86_64-linux-gnu/libj.so'
-# pathpro= '/etc/j/8.05/profile.ijs'
+# pathdll= 'libj.so.8.06' # '/usr/lib/x86_64-linux-gnu/libj.so'
+# pathpro= '/etc/j/8.06/profile.ijs'
 
 

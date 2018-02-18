@@ -3,7 +3,7 @@
 #  edit j_config.py for your J installation
 #  start python3
 #   import j
-#   j.init()
+#   j.init(True) # True (default) load profile - False to avoid load
 #   j.do('abc=: i.2 3')
 #   q= j.get('abc')
 #   j.set('ghi',23+q)
@@ -18,7 +18,7 @@
 # numpy arrays have shape
 # J booleans not supported
 # json support would be reasonable next step
-# import importlib - importlib.reload(j) - eases development
+# import importlib - importlib.reload(j) - eases development of j.py
 
 import j_config # define pathbin, pathdll, pathpro
 from ctypes import *
@@ -29,19 +29,21 @@ def tob(s):
   s= s.encode('utf-8')
  return s
 
-def init():
+def init(loadprofile=True):
  global libj,jt
  libj=  CDLL(j_config.pathdll)
+ libj.JInit.restype = c_void_p
  jt= libj.JInit()
  if jt==0:
   raise AsserttionError('J: init library failed')
 
- e= do("0!:0<'"+j_config.pathpro+"'[BINPATH_z_=:'"+j_config.pathbin+"'[ARGV_z_=:''")
- if e!=0:
-  raise AssertionError('J: load profile failed')
+ if loadprofile:
+  e= do("0!:0<'"+j_config.pathpro+"'[BINPATH_z_=:'"+j_config.pathbin+"'[ARGV_z_=:''")
+  if e!=0:
+   raise AssertionError('J: load profile failed')
 
 def do(a):
- return libj.JDo(jt,tob(a))
+ return libj.JDo(c_void_p(jt),tob(a))
 
 def getlasterror():
  do("last_python_call_error=: 13!:12''") 
@@ -49,7 +51,7 @@ def getlasterror():
 
 def get(n):
  dt= c_ulonglong(0) ; dr= c_ulonglong(0) ; ds= c_ulonglong(0) ; dd= c_ulonglong(0)
- e= libj.JGetM(jt,tob(n),byref(dt),byref(dr),byref(ds),byref(dd))
+ e= libj.JGetM(c_void_p(jt),tob(n),byref(dt),byref(dr),byref(ds),byref(dd))
  t= dt.value
  if t==0: # e not set for error
   raise AssertionError('J: get arg not a name')
@@ -86,7 +88,7 @@ def set(n,d):
   ss= c_char_p(p.tobytes())
   dd= c_char_p(d.tobytes())
 
- e= libj.JSetM(jt,n,byref(dt),byref(dr), byref(ss) ,byref(dd))
+ e= libj.JSetM(c_void_p(jt),n,byref(dt),byref(dr), byref(ss) ,byref(dd))
  if e!=0:
   raise AssertionError('J: set arg not a name')
 
