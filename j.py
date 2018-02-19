@@ -50,7 +50,7 @@ def getlasterror():
  return get('last_python_call_error')
 
 def get(n):
- dt= c_ulonglong(0) ; dr= c_ulonglong(0) ; ds= c_ulonglong(0) ; dd= c_ulonglong(0)
+ dt= c_longlong(0) ; dr= c_longlong(0) ; ds= c_longlong(0) ; dd= c_longlong(0)
  e= libj.JGetM(c_void_p(jt),tob(n),byref(dt),byref(dr),byref(ds),byref(dd))
  t= dt.value
  if t==0: # e not set for error
@@ -83,7 +83,7 @@ def set(n,d):
   dd= c_char_p(d)
  else:
   dt.value= 4 if d.dtype=='int64' else 8
-  p= numpy.asarray(d.shape)
+  p= numpy.asarray(d.shape,c_longlong)
   dr= c_longlong(len(p))
   ss= c_char_p(p.tobytes())
   dd= c_char_p(d.tobytes())
