@@ -4,7 +4,7 @@ DESCRIPTION=: 0 : 0
 api language bindings for python3 use of J shared library
 )
 
-VERSION=: '1.0.4'
+VERSION=: '1.0.5'
 
 RELEASE=: 'j806 j807'
 
