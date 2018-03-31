@@ -20,7 +20,7 @@ def init(loadprofile=True):
  libj.JGetR.restype = c_char_p
  jt= libj.JInit()
  if jt==0:
-  raise AsserttionError('J: init library failed')
+  raise AssertionError('J: init library failed')
  if loadprofile:
   if 0!=do("0!:0<'"+pathpro+"'[BINPATH_z_=:'"+pathbin+"'[ARGV_z_=:''"):
    raise AssertionError('J: load profile failed')
