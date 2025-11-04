@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jclient"
+version = "1.0.0"
+description = "Python API for calling J"
+readme = "README.md"
+dependencies = [
+    "numpy"
+]
