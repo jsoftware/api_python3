@@ -127,7 +127,7 @@ class JClient:
   
   def __check_handle(self) -> None:
     if self.jt == 0:
-      raise RuntimeError("Cannot communicate with J: it is not running.")
+      raise RuntimeError("Cannot communicate with J: it is not running")
 
   def __enter__(self):
     return self

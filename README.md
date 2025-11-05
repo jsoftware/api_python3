@@ -37,7 +37,7 @@ or by standard object creation.
 
 Add `load_profile=False` after the path if you need a totally clean J session.
 
-## Methods:
+## Methods
 
 ### get
 Gets the value of J noun and returns it in Python format. J types are converted according to the below table.
