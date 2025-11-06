@@ -4,7 +4,7 @@ DESCRIPTION=: 0 : 0
 python3 API for calling J shared library for 64-bit OS
 )
 
-VERSION=: '2.0.1'
+VERSION=: '2.0.2'
 
 RELEASE=: 'j806'
 

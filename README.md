@@ -2,15 +2,7 @@
 
 ## Setup
 
-Assuming J is already installed, use below commands to create new Python project and install package.
-
-### Linux/macOS
-```
-python3 -m venv MyProject
-cd MyProject
-source bin/activate
-pip install -e /your/path/to/j9.7/addons/api/python3
-```
+Assuming J is already installed, use below commands to create a Python virtual environment for your project and install package.
 
 ### Windows
 ```
@@ -20,6 +12,16 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\Scripts\activate
 pip install -e C:\your\path\to\j9.7\addons\api\python3
 ```
+
+### Linux/macOS
+```
+python3 -m venv MyProject
+cd MyProject
+source bin/activate
+pip install -e /your/path/to/j9.7/addons/api/python3
+```
+
+> **Important for macOS users:** The default system Python at `/usr/bin/python3` is not suitable for most projects that use dynamic libraries, including this one. To avoid issues, use a user-managed Python installation (e.g. Homebrew, Python.org, Conda).
 
 ## Initialization
 

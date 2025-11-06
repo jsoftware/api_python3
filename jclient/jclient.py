@@ -10,22 +10,16 @@ class JClient:
   def __init__(self, j_dir_path: Union[str, Path], load_profile: bool = True):
     if sys.platform.startswith("win"):
       dll_name = 'j.dll'
-      env_var = "PATH"
     elif sys.platform.startswith("linux"):
       dll_name = 'libj.so'
-      env_var = "LD_LIBRARY_PATH"
     elif sys.platform.startswith("darwin"):
       dll_name = 'libj.dylib'
-      env_var = "DYLD_LIBRARY_PATH"
     else:
       raise RuntimeError(f"Unsupported OS: {sys.platform}")
     
     bin_path = Path(j_dir_path).expanduser() / "bin"
     dll_path = bin_path / dll_name
     profile_path = bin_path / "profile.ijs"
-    
-    # J DLL needs to find libgmp DLL.
-    os.environ[env_var] = str(bin_path) + os.pathsep + os.environ.get(env_var, "")
     
     try:
       self.libj = CDLL(dll_path)
