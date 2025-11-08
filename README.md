@@ -80,14 +80,14 @@ Runs J script from the file at the given path and returns error code.
 `err = jc.script('/your/path/to/file.ijs')`
 
 ### getr
-Returns the result of the most recent J sentence.
+Returns the result string of the most recent J sentence.
 
 `res = jc.getr()`
 
 ### dor
-Executes given J sentence and prints the result.
+Executes given J sentence and returns the result string.
 
-`jc.dor('2 + 3')`
+`res = jc.dor('2 + 3')`
 
 ### close
 Closes J session.

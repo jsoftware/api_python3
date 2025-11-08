@@ -39,7 +39,7 @@ def test_float64():
   jc.do('b -: _ __ 3.7')
   assert jc.getr() == '1\n'
   # Atoms.
-  jc.dor('c =: _.')
+  assert '_.\n' == jc.dor(']c =: _.')
   c = jc.get('c')
   assert np.isnan(c)
   jc.set('d', np.float64(42.77))

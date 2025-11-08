@@ -55,17 +55,15 @@ class JClient:
     self.__check_handle()
     return self.libj.JDo(c_void_p(self.jt), sent.encode())
 
-  # Get output result from last sentence.
+  # Get result string from last sentence.
   def getr(self) -> str:
     self.__check_handle()
     return string_at(self.libj.JGetR(c_void_p(self.jt))).decode()
 
-  # Run sentence and print output result.
-  def dor(self, sent: str) -> None:
+  # Run sentence and return result string.
+  def dor(self, sent: str) -> str:
     self.do(sent)
-    s = self.getr()[:-1]
-    if len(s) > 0:
-      print(s)
+    return self.getr()
 
   # Run J script from the file at the given path and return error code.
   def script(self, path: Union[str, Path]) -> int:
@@ -112,7 +110,9 @@ class JClient:
     prompt = '   '
     sent = input(prompt)
     while sent != '....':
-      self.dor(sent)
+      res = self.dor(sent)
+      if len(res) > 0:
+        print(res[:-1])
       sent = input(prompt)
 
   @staticmethod
