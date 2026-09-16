@@ -1,10 +1,10 @@
-CAPTION=: 'api: python3 to J shared library'
+CAPTION=: 'API: python3 to J shared library'
 
 DESCRIPTION=: 0 : 0
 python3 API for calling J shared library for 64-bit OS
 )
 
-VERSION=: '2.0.4'
+VERSION=: '2.0.5'
 
 RELEASE=: 'j806'
 
