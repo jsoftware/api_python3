@@ -5,6 +5,7 @@ from typing import Any, Union
 from ctypes import CDLL, byref, string_at, c_int64, c_char_p, c_void_p
 import numpy as np
 from numpy.typing import NDArray
+from importlib.resources import files
 
 class JClient:
   def __init__(self, j_dir_path: Union[str, Path], load_profile: bool = True):
@@ -35,6 +36,11 @@ class JClient:
     if load_profile:
       if 0 != self.do("0!:0<'" + str(profile_path) + "'[BINPATH_z_=:'" + str(bin_path) + "'[ARGV_z_=:''"):
         raise RuntimeError("Loading profile.ijs failed")
+      ijs = files("jclient").joinpath("numpy.ijs").read_text(encoding="utf-8")
+      self.set("ijs__", ijs)
+      if 0 != self.do("0!:100 ijs__"):
+        raise RuntimeError("Loading numpy.ijs failed")
+      self.do("4!:55 < 'ijs__'")
     
     self.__J_NP_TYPES = {
       1: 'bool',

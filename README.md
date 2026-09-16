@@ -10,7 +10,7 @@ python3 -m venv MyProject
 cd MyProject
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\Scripts\activate
-pip install -e C:\your\path\to\j9.7\addons\api\python3
+pip install -e C:\your\path\to\j9.8\addons\api\python3
 ```
 
 ### Linux/macOS
@@ -18,7 +18,7 @@ pip install -e C:\your\path\to\j9.7\addons\api\python3
 python3 -m venv MyProject
 cd MyProject
 source bin/activate
-pip install -e /your/path/to/j9.7/addons/api/python3
+pip install -e /your/path/to/j9.8/addons/api/python3
 ```
 
 > **Important for macOS users:** The default system Python at `/usr/bin/python3` is not suitable for most projects that use dynamic libraries, including this one. To avoid issues, use a user-managed Python installation (e.g. Homebrew, Python.org, Conda).
@@ -31,13 +31,13 @@ Import
 
 and use with context manager
 
-`with JClient('/your/path/to/directory/j9.7') as jc:`
+`with JClient('/your/path/to/directory/j9.8') as jc:`
 
 or by standard object creation.
 
-`jc = JClient('/your/path/to/directory/j9.7')`
+`jc = JClient('/your/path/to/directory/j9.8')`
 
-Add `load_profile=False` after the path if you need a totally clean J session.
+By default, in addition to the scripts loaded at J startup, the `Broadcastly` adverb described in the [paper](https://arxiv.org/abs/2609.16064) is loaded into the `z` locale. Add `load_profile=False` after the path if you need a completely clean J session.
 
 ## Methods
 
